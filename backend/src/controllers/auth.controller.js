@@ -7,22 +7,33 @@ import UserSchema from "../models/user.model.js"
 export const registerUser = async (req,res)=>{
     const {username, email, password} = req.body
     try {
-
+        const passwordHash = await bcrypt.hash(password, 10)
         const newUser = new UserSchema({
             username,
             email,
-            password
+            password: passwordHash
         })
-
+        
         const UserSaved = await newUser.save()
         console.log(UserSaved)
     } catch (error) {
-        console.log(error)
+        res.status(500).json({
+            message: error.message
+        })
     }
 }
 
 export const login = async(req,res) =>{
-    console.log('logeando usuario')
+    const {email, password} = req.body
+    try {
+        const userFound = await User.findOne({email})
+        if(userFound) return res.send({
+            message: "se encontró el usuario"
+        })
+
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export const logout = async (req,res) =>{
