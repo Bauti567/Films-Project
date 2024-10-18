@@ -37,5 +37,7 @@ export const login = async(req,res) =>{
 }
 
 export const logout = async (req,res) =>{
-    console.log('cerrando sesion')
+    res.send({
+        message:"El logout"
+    })
 }
