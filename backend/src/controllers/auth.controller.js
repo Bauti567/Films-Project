@@ -21,6 +21,16 @@ export const registerUser = async (req,res)=>{
             username: UserSaved.username,
             email: UserSaved.email
         })
+
+        jwt.sign({
+            id: UserSaved._id
+        },"secret123",{
+            expiresIn : "1d"
+        },(err, token)=>{
+            if (err) console.log(err)
+                res.json({token})
+        })
+
     } catch (error) {
         res.status(500).json({
             message: error.message
