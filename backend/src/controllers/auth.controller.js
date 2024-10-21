@@ -30,24 +30,42 @@ export const registerUser = async (req,res)=>{
     }
 }
 
+
 export const login = async(req,res) =>{
     const {email, password} = req.body
     try {
-        const userFound = await User.findOne({email})
-        if(userFound) return res.status(400).json({
+        const UserFound = await User.findOne({email})
+        if(!UserFound) return res.status(400).json({
             message: "User not found"
         })
 
+        const isMatch = await bcrypt.compare(password, UserFound.password)
+        if(!isMatch) return res.status(400).json({
+            message: "Invalid credentials"
+
+        })
+
+        const token = await createAccessToken({id: UserFound._id})
+
+        res.cookie('token', token)
+        res.json({
+            id: UserFound._id,
+            username: UserFound.username,
+            email: UserFound.email
+
+        })
+
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: error.message
         })
-        console.log(error)
     }
 }
 
 export const logout = async (req,res) =>{
-    res.send({
-        message:"El logout"
-    })
+    res.cookie('token', "" ,{
+        expires: new Date(0),
+    });
+    return res.sendStatus(200);
+
 }
