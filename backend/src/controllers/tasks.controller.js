@@ -37,7 +37,6 @@ export const deleteTask = async(req,res)=>{
     })
     return res.sendStatus(204);
     
-
 }
 
 export const updateTask = async(req,res)=>{

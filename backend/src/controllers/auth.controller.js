@@ -1,7 +1,6 @@
 // Controlador de autenticacion de usuario
-import User from "../schemas/user.schema.js";
 import bcrypt from 'bcryptjs'
-import UserSchema from "../models/user.model.js"
+import User from "../models/user.model.js"
 import { createAccessToken } from "../libs/jwt.js";
 
 export const registerUser = async (req,res)=>{

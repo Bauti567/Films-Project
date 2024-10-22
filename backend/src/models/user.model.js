@@ -1,7 +1,7 @@
 // el modelo almacena los datos dentro de la base de datos :)
 // para procesar formularios
 
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 // Es una forma de especificar como se van a ver los datos para almacenar
 
