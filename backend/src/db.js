@@ -6,7 +6,7 @@ export const ConnectDB = async()=>{
         await mongoose.connect('mongodb+srv://JuanBautista:JuanBautista1972@atlascluster.lazttss.mongodb.net/?retryWrites=true&w=majority&appName=AtlasCluster')
         console.log('Db is connected')
     
-    }catch(error){
+    }catch(error){x 
         console.log(error)
     }
 
