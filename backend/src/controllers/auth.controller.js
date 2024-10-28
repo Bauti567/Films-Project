@@ -9,7 +9,7 @@ export const registerUser = async (req,res)=>{
     try {
         const passwordHash = await bcrypt.hash(password, 10)
         const newUser = new UserSchema({
-            username,
+            username,  
             email,
             password: passwordHash
         })

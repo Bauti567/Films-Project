@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 
 // Es una forma de especificar como se van a ver los datos para almacenar
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     username:{
         type: String,
         required: true,
